@@ -1,1 +1,67 @@
-<p>questions works!</p>
+
+<div *ngIf="reset" class="question__container">
+            <div class="card">
+                <div class="card-body">
+                    <h2 [innerHTML]="questions.results[num].question"></h2>
+                </div>
+            </div>
+            <div *ngIf="shuffleDiv == 0" class="d-flex" [ngStyle]="{'flex-direction': shuffle == 0 ? 'column' : 'column-reverse'}">
+                <div class="form-check">
+                    <input class="form-check-input none" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="correct"  (change)="radioHandler($event)">
+                    <label class="form-check-label" for="flexRadioDefault1"  [ngStyle]="{'background-color': color == '1' ? 'green' : defColor}" (click)="selectAnswer(1)">
+                        {{questions.results[num].correct_answer}}
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input  none" type="radio" name="flexRadioDefault" id="flexRadioDefault2" (change)="radioHandler($event)" value="incorrect">
+                    <label class="form-check-label" for="flexRadioDefault2" [ngStyle]="{'background-color': color == '2' ? 'green' : defColor}" (click)="selectAnswer(2)">
+                        {{questions.results[num].incorrect_answers[0]}}
+                    </label>
+                    
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input  none" type="radio" name="flexRadioDefault" id="flexRadioDefault3" (change)="radioHandler($event)" value="incorrect">
+                    <label class="form-check-label" for="flexRadioDefault3"  [ngStyle]="{'background-color': color == '3' ? 'green' : defColor}" (click)="selectAnswer(3)">
+                        {{questions.results[num].incorrect_answers[1]}}
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input  none" type="radio" name="flexRadioDefault" id="flexRadioDefault4" (change)="radioHandler($event)" value="incorrect">
+                    <label class="form-check-label" for="flexRadioDefault4"  [ngStyle]="{'background-color': color == '4' ? 'green' : defColor}" (click)="selectAnswer(4)">
+                        {{questions.results[num].incorrect_answers[2]}}
+                    </label>    
+                </div>
+            </div>
+            <div *ngIf="shuffleDiv == 1" class="d-flex" [ngStyle]="{'flex-direction': shuffle == 0 ? 'column' : 'column-reverse'}">
+                
+                <div class="form-check">
+                    <input class="form-check-input  none" type="radio" name="flexRadioDefault" id="flexRadioDefault2" (change)="radioHandler($event)" value="incorrect">
+                    <label class="form-check-label" for="flexRadioDefault2"  [ngStyle]="{'background-color': color == '5' ? 'green' : defColor}" (click)="selectAnswer(5)">
+                        {{questions.results[num].incorrect_answers[0]}}
+                    </label>     
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input  none" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="correct"  (change)="radioHandler($event)">
+                    <label class="form-check-label" for="flexRadioDefault1"  [ngStyle]="{'background-color': color == '6' ? 'green' : defColor}" (click)="selectAnswer(6)">
+                        {{questions.results[num].correct_answer}}
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input none" type="radio" name="flexRadioDefault" id="flexRadioDefault3" (change)="radioHandler($event)" value="incorrect">
+                    <label class="form-check-label" for="flexRadioDefault3"  [ngStyle]="{'background-color': color == '7' ? 'green' : defColor}" (click)="selectAnswer(7)">
+                        {{questions.results[num].incorrect_answers[1]}}
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input  none" type="radio" name="flexRadioDefault" id="flexRadioDefault4" (change)="radioHandler($event)" value="incorrect">
+                    <label class="form-check-label" for="flexRadioDefault4"  [ngStyle]="{'background-color': color == '8' ? 'green' : defColor}" (click)="selectAnswer(8)">
+                        {{questions.results[num].incorrect_answers[2]}}
+                    </label>    
+                </div>
+            </div>
+        <button [disabled]="disable"  type="button" class="btn btn-dark button" (click)="getAnswer()">Next</button>
+</div>
+<div *ngIf="!reset">
+    <h4>you got {{score}} / 10</h4>
+    <button (click)="resetQuiz()" class="btn btn-success">Take Another Quiz</button>
+</div>

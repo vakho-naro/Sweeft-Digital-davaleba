@@ -7,8 +7,10 @@ import { QuizService } from '../quiz.service';
   styleUrls: ['./quiz.component.css']
 })
 export class QuizComponent implements OnInit {
-  difficulty = "easy";
-  category = "9";
+  display = true;
+  difficulty = "any";
+  category = "any";
+  questionData: any = ''
   constructor(private quiz:QuizService) { }
 
   difficultyHandler(event: any) {
@@ -20,17 +22,40 @@ export class QuizComponent implements OnInit {
     console.log(this.category)
   }
   getUrl() {
-    this.quiz.getQuiz(this.difficulty, this.category).subscribe((result) => {
-      console.log(result)
-    })
+     if(this.category == "any" && this.difficulty == "any") {
+      this.quiz.getAny().subscribe((result) => {
+        console.log(result)
+        this.questionData = result;
+        this.display = false
+      })
+      console.log("result")
+    }else if(this.difficulty == "any") {
+      this.quiz.getDifficyltyAny(this.category).subscribe((result) => {
+        console.log(result)
+        this.questionData = result;
+        this.display = false
+      })
+    } else if(this.category == "any") {
+      this.quiz.getTypeAny(this.difficulty).subscribe((result) => {
+        console.log(result)
+        this.questionData = result;
+        this.display = false
+      })
+    } else {
+      this.quiz.getQuiz(this.difficulty, this.category).subscribe((result) => {
+        console.log(result)
+        this.questionData = result;
+        this.display = false
+      })
+    }
+    
   }
+  
   ngOnInit(): void {
-    // this.quiz.getQuiz(this.difficulty, this.category).subscribe((result) => {
-    //   console.log(result)
-    // })
-    this.quiz.test().subscribe((result) => {
-      console.log(result)
-    })
+    
+  }
+  resetQuiz(event: any) {
+    return this.display = event
   }
   
 }

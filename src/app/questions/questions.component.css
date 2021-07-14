@@ -1,0 +1,37 @@
+.question__container {
+    width: 600px;
+}
+
+.card {
+    min-height: 200px;
+    margin-bottom: 10px;
+}
+
+.none {
+    display: none;
+}
+
+label {
+    width: 104%;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 5px;
+    height: 30px;
+    padding: 1px 10px;
+    background-color: #717473;
+    color: white;
+    cursor: pointer;
+    margin-left: -4%;
+}
+
+label:hover {
+    background-color: rgb(66, 170, 83);
+}
+
+.button {
+    width: 100%;
+    margin: 10px auto;
+    height: 51px;
+}
+
+

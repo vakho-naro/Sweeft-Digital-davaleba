@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="display">
     <p>choose difficulty and category</p>
     <select name="trivia_difficulty" class="form-control" (change)="difficultyHandler($event)">
         <option value="any">Any Difficulty</option>
@@ -33,7 +33,10 @@
         <option value="31">Entertainment: Japanese Anime &amp; Manga</option>
         <option value="32">Entertainment: Cartoon &amp; Animations</option>		
     </select>
+    <br>
+    <button (click)="getUrl()" type="button" class="btn btn-success">Start Test</button>
+</div>
 
-    <button (click)="getUrl()">Start Test</button>
-
+<div *ngIf="!display">
+    <app-questions [questions] = questionData (resetTest) = "resetQuiz($event)"></app-questions>
 </div>
